@@ -1,4 +1,5 @@
 title: onsidequest
+description: "" # 비워두지 않으면 GitHub Pages가 repo 설명을 부제로 채운다
 url: "https://onsidequest.github.io"
 baseurl: ""
 lang: ko
