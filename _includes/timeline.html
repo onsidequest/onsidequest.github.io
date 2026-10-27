@@ -1,0 +1,47 @@
+{%- comment -%}
+  연대기 그림. _data/timelines/<name>.yml을 읽어 그린다.
+  사용: include 태그에 timeline.html name="stop"을 넘긴다.
+  kramdown이 HTML 블록을 끊지 않도록 출력에 빈 줄을 남기지 않는다.
+{%- endcomment -%}
+{%- assign tl = site.data.timelines[include.name] -%}
+{%- assign prev_year = nil -%}
+<figure class="timeline">
+<ol class="timeline-list">
+{%- for item in tl.items -%}
+{%- assign year = item.date | slice: 0, 4 | plus: 0 -%}
+{%- if prev_year -%}{%- assign gap = year | minus: prev_year -%}{%- if gap > 3 -%}
+<li class="timeline-gap" aria-hidden="true">{{ gap }}년</li>
+{%- endif -%}{%- endif -%}
+{%- assign prev_year = year %}
+<li class="timeline-item tone-{{ item.tone | default: 'plain' }}" id="{{ include.name }}-{{ item.id }}">
+<time class="timeline-date" datetime="{{ item.date | replace: '.', '-' }}">{{ item.date }}</time>
+<div class="timeline-body">
+<p class="timeline-head"><a class="timeline-name" href="{{ item.url }}">{{ item.name | escape }}</a>{% if item.tag %}<span class="timeline-tag">{{ item.tag | escape }}</span>{% endif %}</p>
+{%- if item.title != item.name %}
+<p class="timeline-title">{{ item.title | escape }}</p>
+{%- endif %}
+<p class="timeline-meta"><span class="timeline-venue">{{ item.venue | escape }}</span>{% if item.award %}<span class="timeline-award">{{ item.award | escape }}</span>{% endif %}<span class="timeline-org">{{ item.org | escape }}</span></p>
+{%- if item.people %}
+<p class="timeline-people">{{ item.people | escape }}</p>
+{%- endif %}
+{%- if item.links %}
+<ul class="timeline-links">
+{%- for link in item.links -%}
+{%- assign src = tl.items | where: "id", link.from | first -%}
+{%- case link.kind -%}
+{%- when "inherits" -%}{%- assign kind = "이어받음" -%}
+{%- when "measures" -%}{%- assign kind = "측정" -%}
+{%- else -%}{%- assign kind = "인용" -%}
+{%- endcase %}
+<li class="kind-{{ link.kind }}"><span class="timeline-kind">{{ kind }}</span><a href="#{{ include.name }}-{{ src.id }}">{{ src.name | escape }}</a>: {{ link.note | escape }}</li>
+{%- endfor %}
+</ul>
+{%- endif %}
+</div>
+</li>
+{%- endfor %}
+</ol>
+{%- if tl.caption %}
+<figcaption>{{ tl.caption | escape }}</figcaption>
+{%- endif %}
+</figure>

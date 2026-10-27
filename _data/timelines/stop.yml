@@ -1,0 +1,189 @@
+# STOP 연대기. 글에서 include 태그에 timeline.html name="stop"을 넘겨 넣는다.
+# - date: arXiv 첫 공개 월. arXiv판이 없는 심사 중 논문은 OpenReview 투고 시기.
+# - tag, tone: 이 논문이 STOP과 어떤 관계인지. tone은 focus(STOP) | strong(STOP을 이어받음) | plain(STOP을 인용) | muted(선행·간접)
+# - award: 공식 페이지에서 확인한 Spotlight·Oral만 적는다.
+# - links: 이 논문이 앞선 논문에서 가져온 것. from은 이 파일의 id, kind는 inherits | cites | measures. 괄호는 그 내용이 적힌 위치.
+caption: >-
+  날짜는 arXiv 첫 공개 월이고, 심사 중인 두 편은 ICLR 2027 투고 시기입니다.
+  논문마다 아래 줄은 앞선 논문에서 무엇을 가져왔는지와 그 내용이 적힌 위치입니다.
+  학회 배지는 공식 페이지에서 확인한 Spotlight·Oral만 표시했습니다.
+items:
+  - id: godel-machine
+    date: "2003.09"
+    name: Gödel Machine
+    title: "Goedel Machines: Self-Referential Universal Problem Solvers Making Provably Optimal Self-Improvements"
+    url: https://arxiv.org/abs/cs/0309048
+    venue: IDSIA tech report · Springer 2007
+    org: IDSIA
+    people: Jürgen Schmidhuber
+    tag: 선행 연구
+    tone: muted
+
+  - id: stop
+    date: "2023.10"
+    name: STOP
+    title: "Self-Taught Optimizer (STOP): Recursively Self-Improving Code Generation"
+    url: https://arxiv.org/abs/2310.02304
+    venue: COLM 2024
+    award: Spotlight
+    org: Stanford · Microsoft Research · OpenAI
+    people: Eric Zelikman, Eliana Lorch, Lester Mackey, Adam Tauman Kalai
+    tag: 기준 논문
+    tone: focus
+    links:
+      - from: godel-machine
+        kind: cites
+        note: 증명된 개선만 받는 방식과 달리, STOP의 개선은 성능을 떨어뜨릴 수도 있다고 대비함 (§7)
+
+  - id: adas
+    date: "2024.08"
+    name: ADAS
+    title: Automated Design of Agentic Systems
+    url: https://arxiv.org/abs/2408.08435
+    venue: ICLR 2025
+    org: UBC · Vector Institute
+    people: Shengran Hu, Cong Lu, Jeff Clune
+    tag: STOP을 인용
+    tone: plain
+    links:
+      - from: stop
+        kind: cites
+        note: meta agent가 자기를 개선할 수 있다는 근거로 인용함 (§6 Higher-order ADAS)
+
+  - id: godel-agent
+    date: "2024.10"
+    name: Gödel Agent
+    title: "Gödel Agent: A Self-Referential Agent Framework for Recursive Self-Improvement"
+    url: https://arxiv.org/abs/2410.04444
+    venue: ACL 2025
+    org: Peking University · UC Santa Barbara · University of Arizona
+    people: Xunjian Yin 외 5명
+    tag: STOP을 인용
+    tone: plain
+    links:
+      - from: godel-machine
+        kind: inherits
+        note: 여기서 착안하되, 증명 대신 환경 feedback으로 개선을 판단함 (초록)
+      - from: stop
+        kind: cites
+        note: 선행 연구로 인용함 (§2)
+
+  - id: sica
+    date: "2025.04"
+    name: SICA
+    title: A Self-Improving Coding Agent
+    url: https://arxiv.org/abs/2504.15228
+    venue: ICLR 2025 Workshop SSI-FM
+    award: Oral
+    org: University of Bristol · iGent AI
+    people: Maxime Robeyns, Martin Szummer, Laurence Aitchison
+    tag: STOP을 이어받음
+    tone: strong
+    links:
+      - from: stop
+        kind: inherits
+        note: 자기 개선 agent의 선행 연구로 놓고, 범용 coding agent로 넓힘 (§2)
+      - from: adas
+        kind: inherits
+        note: loop를 가져와 meta agent와 target agent의 구분을 없앰 (§2, §3)
+
+  - id: dgm
+    date: "2025.05"
+    name: Darwin Gödel Machine
+    title: "Darwin Gödel Machine: Open-Ended Evolution of Self-Improving Agents"
+    url: https://arxiv.org/abs/2505.22954
+    venue: ICLR 2026
+    org: UBC · Vector Institute · Sakana AI
+    people: Jenny Zhang, Shengran Hu, Cong Lu, Robert Lange, Jeff Clune
+    tag: STOP과 대비
+    tone: plain
+    links:
+      - from: godel-machine
+        kind: inherits
+        note: 자기 코드를 다시 쓰는 틀은 두고, 증명 조건을 coding benchmark 검증으로 바꿈 (초록)
+      - from: godel-agent
+        kind: inherits
+        note: 가장 가까운 선행 연구로 놓고, 차이 두 가지로 자기 기여를 정의함 (§2)
+      - from: stop
+        kind: cites
+        note: 푸는 과제가 자기 수정 능력과 직접 이어지지 않는 선행 연구로 대비함 (§2)
+
+  - id: hgm
+    date: "2025.10"
+    name: Huxley-Gödel Machine
+    title: "Huxley-Gödel Machine: Human-Level Coding Agent Development by an Approximation of the Optimal Self-Improving Machine"
+    url: https://arxiv.org/abs/2510.21614
+    venue: ICLR 2026
+    award: Oral
+    org: KAUST
+    people: Wenyi Wang 외 6명, Jürgen Schmidhuber
+    tag: STOP을 인용
+    tone: plain
+    links:
+      - from: dgm
+        kind: inherits
+        note: 구현에서 초기 agent를 가져오고, parent selection 기준을 바꿈 (App C.1, §3.3)
+      - from: godel-machine
+        kind: inherits
+        note: 제목부터 '최적 자기 개선 기계의 근사'를 내걺
+      - from: stop
+        kind: cites
+        note: STOP과 Gödel Agent가 처음 실험했고 DGM과 SICA가 넓혔다고 정리함 (§5)
+
+  - id: hyperagents
+    date: "2026.03"
+    name: Hyperagents
+    title: Hyperagents
+    url: https://arxiv.org/abs/2603.19461
+    venue: NeurIPS 2026
+    org: Meta · UBC · Vector Institute · Edinburgh · NYU
+    people: Jenny Zhang, Jakob Foerster, Jeff Clune 외 5명
+    tag: DGM을 이어받음
+    tone: muted
+    links:
+      - from: dgm
+        kind: inherits
+        note: open-ended 탐색과 parent selection은 두고, 고정된 지시 생성 단계를 없앰 (§3, App A.2)
+      - from: godel-agent
+        kind: cites
+        note: 편집 가능한 improver라는 같은 생각으로 짧게 인용함 (§2)
+
+  - id: rsi-harness
+    date: "2026.09"
+    name: RSI-Harness
+    title: "RSI-Harness: Optimizing the Harness Optimizer via Recursive Self-Improvement"
+    url: https://openreview.net/forum?id=EOrtreQLbv
+    venue: ICLR 2027 심사 중
+    org: 익명 (double-blind 심사)
+    tag: STOP을 이어받음
+    tone: strong
+    links:
+      - from: stop
+        kind: inherits
+        note: improver를 자기 자신에게 적용하는 방식을 가져옴 (App G)
+      - from: dgm
+        kind: inherits
+        note: archive와 parent selection을 가져옴 (App G)
+      - from: hyperagents
+        kind: cites
+        note: 같은 예산에서 비교함 (Table 1)
+
+  - id: inheritance
+    date: "2026.09"
+    name: Improvement by Inheritance
+    title: "Improvement by Inheritance: Measuring Recursive Self-Improvement in Coding Agents"
+    url: https://openreview.net/forum?id=ZMmJDeDTXk
+    venue: ICLR 2027 심사 중
+    org: 익명 (double-blind 심사)
+    tag: 계보를 측정
+    tone: muted
+    links:
+      - from: hyperagents
+        kind: measures
+        note: 공개 run 71개를 분석함. lineage 이득 +0.293은 거의 전부 상속이었음 (§6)
+      - from: dgm
+        kind: measures
+        note: 실행 기록을 분석함. SWE-bench 자식 agent의 45~62%는 끝내 채점되지 않았음
+      - from: adas
+        kind: measures
+        note: 실행 기록을 분석함. 탐색 1위가 test에서도 1·2위인 domain은 5개 중 2개였음

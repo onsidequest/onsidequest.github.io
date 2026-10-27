@@ -550,6 +550,251 @@ pre {
   color: var(--hl-string);
 }
 
+/* ---------- Timeline ---------- */
+.timeline {
+  --tl-date: 68px;
+  --tl-gap: 26px;
+  --tl-rail: calc(var(--tl-date) + var(--tl-gap) / 2);
+  margin: 2em 0 2.4em;
+}
+
+.timeline .timeline-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline .timeline-list > li {
+  margin: 0;
+}
+
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--tl-date) 1fr;
+  gap: 0 var(--tl-gap);
+}
+
+/* 날짜 열과 본문 사이의 세로선과 점 */
+.timeline-item::before,
+.timeline-gap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--tl-rail);
+  border-left: 1px solid var(--border);
+}
+
+.timeline-item:first-child::before {
+  top: 10px;
+}
+
+.timeline-item:last-child::before {
+  bottom: auto;
+  height: 10px;
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: calc(var(--tl-rail) - 4px);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--fg-soft);
+  box-shadow: 0 0 0 3px var(--bg);
+}
+
+.timeline-item.tone-muted::after {
+  border: 1.5px solid var(--muted);
+  background: var(--bg);
+}
+
+.timeline-item.tone-strong::after {
+  background: var(--accent);
+}
+
+.timeline-date {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.6;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.timeline-body {
+  min-width: 0;
+  padding-bottom: 28px;
+}
+
+/* STOP 같은 기준 논문은 상자로 띄운다 */
+.timeline-item.tone-focus .timeline-body {
+  margin-bottom: 28px;
+  padding: 12px 16px 14px;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 6%, var(--bg));
+}
+
+.timeline-item.tone-focus .timeline-date {
+  padding-top: 13px;
+}
+
+.timeline-item.tone-focus::after {
+  top: 17px;
+  left: calc(var(--tl-rail) - 6px);
+  width: 13px;
+  height: 13px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--bg), 0 0 0 4.5px var(--accent);
+}
+
+.timeline .timeline-head,
+.timeline .timeline-title,
+.timeline .timeline-meta {
+  margin: 0;
+}
+
+.timeline-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  line-height: 1.5;
+}
+
+.timeline .timeline-name {
+  color: var(--fg);
+  font-size: 17px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.timeline .timeline-name:hover {
+  color: var(--accent);
+}
+
+.timeline-tag,
+.timeline-award {
+  padding: 1px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.tone-strong .timeline-tag,
+.tone-focus .timeline-tag {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--accent);
+}
+
+.timeline .timeline-title {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.timeline .timeline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.timeline-venue {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.timeline-award {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.timeline-org {
+  color: var(--muted);
+}
+
+.timeline .timeline-people {
+  margin: 1px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.timeline .timeline-links {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 줄이 넘어가도 관계 이름 열 뒤로 들여 쓴다 */
+.timeline .timeline-links li {
+  margin: 4px 0 0;
+  padding-left: 58px;
+  text-indent: -58px;
+}
+
+.timeline-kind {
+  display: inline-block;
+  min-width: 58px;
+  text-indent: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.kind-inherits .timeline-kind {
+  color: var(--accent);
+}
+
+.timeline .timeline-links a {
+  color: var(--fg);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.timeline .timeline-links a:hover {
+  color: var(--accent);
+}
+
+/* 오래 비는 구간은 점선과 햇수로 줄인다 */
+.timeline .timeline-gap {
+  position: relative;
+  width: var(--tl-date);
+  padding-bottom: 28px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-align: right;
+}
+
+.timeline-gap::before {
+  border-left-style: dashed;
+  border-left-color: var(--muted);
+}
+
+.timeline figcaption {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
 /* ---------- Comments ---------- */
 .comments {
   margin-top: 64px;
@@ -616,5 +861,32 @@ pre {
 
   .prose h2 {
     font-size: 22px;
+  }
+
+  .timeline {
+    --tl-date: 54px;
+    --tl-gap: 24px;
+  }
+
+  .timeline .timeline-links li {
+    padding-left: 0;
+    text-indent: 0;
+  }
+
+  .timeline-kind {
+    min-width: 0;
+    margin-right: 6px;
+  }
+
+  .timeline-date {
+    font-size: 12px;
+  }
+
+  .timeline .timeline-name {
+    font-size: 16px;
+  }
+
+  .timeline-item.tone-focus .timeline-body {
+    padding: 10px 12px 12px;
   }
 }
