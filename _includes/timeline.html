@@ -1,10 +1,15 @@
 {%- comment -%}
   연대기 그림. _data/timelines/<name>.yml을 읽어 그린다.
   사용: include 태그에 timeline.html name="stop"을 넘긴다.
+  fold="제목"을 함께 넘기면 접힌 상태로 그리고, 제목 옆에 논문 수를 붙인다.
   kramdown이 HTML 블록을 끊지 않도록 출력에 빈 줄을 남기지 않는다.
 {%- endcomment -%}
 {%- assign tl = site.data.timelines[include.name] -%}
 {%- assign prev_year = nil -%}
+{%- if include.fold %}
+<details class="timeline-fold">
+<summary>{{ include.fold | escape }} ({{ tl.items | size }})</summary>
+{%- endif %}
 <figure class="timeline">
 <ol class="timeline-list">
 {%- for item in tl.items -%}
@@ -45,3 +50,21 @@
 <figcaption>{{ tl.caption | escape }}</figcaption>
 {%- endif %}
 </figure>
+{%- if include.fold %}
+</details>
+<script>
+  // 접힌 연대기 안의 항목을 가리키는 링크(계보 그래프 노드 등)를 누르거나 그 주소로 들어오면 펼친다
+  (function () {
+    var fold = document.currentScript.previousElementSibling;
+    function reveal(id) {
+      var el = id && document.getElementById(id);
+      if (el && fold.contains(el)) fold.open = true;
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (a) reveal(decodeURIComponent(a.getAttribute('href').slice(1)));
+    });
+    reveal(decodeURIComponent(location.hash.slice(1)));
+  })();
+</script>
+{%- endif %}

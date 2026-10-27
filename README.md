@@ -22,6 +22,8 @@ title: "글 제목"
 {% include timeline.html name="stop" %}
 ```
 
+`fold="Timeline"`을 함께 넘기면 "Timeline (논문 수)" 한 줄로 접혀 있다가 누르면 펼쳐진다. 접힌 항목을 가리키는 링크를 누르면 자동으로 펼쳐진다.
+
 ## 수식
 
 글 맨 위에 `math: true`를 적으면 그 글에서만 KaTeX를 불러온다. 수식은 LaTeX로 `$$...$$` 안에 쓴다. 문장 안에 쓰면 inline이고, 앞뒤에 빈 줄을 두고 따로 쓰면 가운데 정렬된 display 수식이 된다.

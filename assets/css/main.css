@@ -795,6 +795,27 @@ figure.timeline {
   line-height: 1.6;
 }
 
+/* fold를 넘긴 연대기: 제목 한 줄만 보이고 누르면 펼쳐진다 */
+details.timeline-fold {
+  margin: 2em 0 2.4em;
+}
+
+details.timeline-fold > summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+details.timeline-fold > summary:hover,
+details.timeline-fold[open] > summary {
+  color: var(--fg);
+}
+
+details.timeline-fold > figure.timeline {
+  margin: 1.2em 0 0;
+}
+
 /* ---------- Lineage graph ---------- */
 figure.lineage {
   margin: 2em 0 2.4em;
