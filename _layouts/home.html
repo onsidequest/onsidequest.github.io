@@ -1,0 +1,23 @@
+---
+layout: default
+---
+<section class="intro">
+  <h1>{{ site.title }}</h1>
+  <p>{{ site.description }}</p>
+</section>
+
+{{ content }}
+
+{% if site.posts.size > 0 %}
+{% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% for year in posts_by_year %}
+<section class="year-group">
+  <h2 class="year-label">{{ year.name }}</h2>
+  <ul class="post-list">
+    {% for post in year.items %}{% include post-item.html post=post %}{% endfor %}
+  </ul>
+</section>
+{% endfor %}
+{% else %}
+<p class="empty">아직 글이 없습니다.</p>
+{% endif %}

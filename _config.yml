@@ -1,0 +1,43 @@
+title: onsidequest
+description: 직접 만들어 보며 배운 것들을 기록합니다.
+url: "https://onsidequest.github.io"
+baseurl: ""
+lang: ko
+timezone: Asia/Seoul
+
+author:
+  name: onsidequest
+  github: onsidequest
+
+permalink: /posts/:title/
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
