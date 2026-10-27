@@ -22,6 +22,23 @@ title: "글 제목"
 {% include timeline.html name="stop" %}
 ```
 
+## 수식
+
+글 맨 위에 `math: true`를 적으면 그 글에서만 KaTeX를 불러온다. 수식은 LaTeX로 `$$...$$` 안에 쓴다. 문장 안에 쓰면 inline이고, 앞뒤에 빈 줄을 두고 따로 쓰면 가운데 정렬된 display 수식이 된다.
+
+```markdown
+---
+title: "글 제목"
+math: true
+---
+
+improver $$I_0$$ 는 ...
+
+$$
+I_t = I_{t-1}(\hat{u}, I_{t-1}, L)
+$$
+```
+
 ## 댓글
 
 [giscus](https://giscus.app)로 글마다 댓글이 붙는다. 댓글은 이 repo의 Discussions(Announcements 카테고리)에 저장된다. 설정은 `_config.yml`의 `giscus`.
