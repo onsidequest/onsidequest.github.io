@@ -1,41 +1,15 @@
 ---
 layout: default
 ---
-{% assign char_count = content | strip_html | strip_newlines | size %}
-{% assign read_minutes = char_count | divided_by: 500 | plus: 1 %}
 <article class="post">
   <header class="post-header">
     <h1>{{ page.title }}</h1>
-    <div class="post-meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y년 %-m월 %-d일' }}</time>
-      <span aria-hidden="true">·</span>
-      <span>{{ read_minutes }}분 읽기</span>
-    </div>
-    {% if page.tags.size > 0 %}
-    <ul class="tag-list">
-      {% for tag in page.tags %}<li><a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">#{{ tag }}</a></li>{% endfor %}
-    </ul>
-    {% endif %}
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time>
   </header>
 
   <div class="prose">
     {{ content }}
   </div>
 
-  {% if page.previous or page.next %}
-  <nav class="post-nav" aria-label="이전/다음 글">
-    {% if page.previous %}
-    <a class="post-nav-prev" href="{{ page.previous.url | relative_url }}">
-      <span class="post-nav-label">이전 글</span>
-      <span class="post-nav-title">{{ page.previous.title }}</span>
-    </a>
-    {% else %}<span></span>{% endif %}
-    {% if page.next %}
-    <a class="post-nav-next" href="{{ page.next.url | relative_url }}">
-      <span class="post-nav-label">다음 글</span>
-      <span class="post-nav-title">{{ page.next.title }}</span>
-    </a>
-    {% endif %}
-  </nav>
-  {% endif %}
+  {% include comments.html %}
 </article>

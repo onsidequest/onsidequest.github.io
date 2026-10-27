@@ -7,7 +7,6 @@
   --muted: #6c6d73;
   --border: #e4e4df;
   --accent: #0d7a6f;
-  --accent-soft: rgba(13, 122, 111, 0.1);
   --code-bg: #f2f2ef;
   --code-fg: #2a2b2e;
   --selection: rgba(13, 122, 111, 0.18);
@@ -37,7 +36,6 @@
     --muted: #9b9ca3;
     --border: #2a2b2f;
     --accent: #4fd1bf;
-    --accent-soft: rgba(79, 209, 191, 0.12);
     --code-bg: #1a1b1e;
     --code-fg: #dcdce0;
     --selection: rgba(79, 209, 191, 0.25);
@@ -61,7 +59,6 @@
   --muted: #9b9ca3;
   --border: #2a2b2f;
   --accent: #4fd1bf;
-  --accent-soft: rgba(79, 209, 191, 0.12);
   --code-bg: #1a1b1e;
   --code-fg: #dcdce0;
   --selection: rgba(79, 209, 191, 0.25);
@@ -149,9 +146,6 @@ button:focus-visible {
 }
 
 .site-title {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
   color: var(--fg);
   font-weight: 700;
   font-size: 17px;
@@ -160,25 +154,6 @@ button:focus-visible {
 
 .site-title:hover {
   text-decoration: none;
-}
-
-.site-mark {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 3px solid var(--accent);
-  position: relative;
-}
-
-.site-mark::after {
-  content: "";
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
 }
 
 .site-nav {
@@ -274,143 +249,44 @@ button:focus-visible {
   color: var(--fg);
 }
 
-/* ---------- Home ---------- */
-.intro {
-  padding: 72px 0 40px;
-}
-
-.intro h1 {
-  margin: 0 0 12px;
-  font-size: 40px;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
-}
-
-.intro p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 18px;
-}
-
-.year-group {
-  margin-top: 32px;
-}
-
-.year-label {
-  margin: 0 0 4px;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-}
-
+/* ---------- Post list ---------- */
 .post-list {
   list-style: none;
-  margin: 0;
+  margin: 48px 0 0;
   padding: 0;
 }
 
 .post-item {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 16px;
-  padding: 20px 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 0;
   border-bottom: 1px solid var(--border);
 }
 
-.post-item:last-child {
-  border-bottom: none;
+.post-item a {
+  color: var(--fg);
+  font-size: 17px;
+  font-weight: 500;
 }
 
-.post-item-date {
-  padding-top: 3px;
+.post-item a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.post-item time {
+  flex-shrink: 0;
   color: var(--muted);
   font-family: var(--font-mono);
   font-size: 14px;
   font-variant-numeric: tabular-nums;
 }
 
-.post-item-title {
-  color: var(--fg);
-  font-size: 19px;
-  font-weight: 650;
-  line-height: 1.45;
-  letter-spacing: -0.015em;
-}
-
-.post-item-title:hover {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.post-item-desc {
-  margin: 6px 0 0;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.6;
-}
-
 .empty {
+  margin-top: 48px;
   color: var(--muted);
-}
-
-/* ---------- Tags ---------- */
-.tag-list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 10px 0 0;
-  padding: 0;
-}
-
-.tag-list a,
-.tag-cloud a {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 6px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.tag-list a:hover,
-.tag-cloud a:hover {
-  text-decoration: none;
-  filter: brightness(0.95);
-}
-
-.tag-cloud {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0 0 48px;
-  padding: 0;
-}
-
-.tag-cloud a {
-  padding: 5px 12px;
-  font-size: 14px;
-}
-
-.tag-cloud span {
-  margin-left: 2px;
-  opacity: 0.65;
-  font-variant-numeric: tabular-nums;
-}
-
-.tag-section {
-  margin-bottom: 40px;
-  scroll-margin-top: 24px;
-}
-
-.tag-section h2 {
-  margin: 0 0 4px;
-  font-size: 20px;
-  letter-spacing: -0.015em;
 }
 
 /* ---------- Page & Post ---------- */
@@ -422,7 +298,7 @@ button:focus-visible {
 .page-header h1,
 .post-header h1 {
   margin: 0;
-  font-size: 34px;
+  font-size: 32px;
   line-height: 1.3;
   letter-spacing: -0.03em;
 }
@@ -432,17 +308,12 @@ button:focus-visible {
   margin-bottom: 40px;
 }
 
-.post-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
+.post-header time {
+  display: block;
+  margin-top: 12px;
   color: var(--muted);
-  font-size: 15px;
-}
-
-.post-header .tag-list {
-  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 14px;
 }
 
 /* ---------- Prose ---------- */
@@ -516,7 +387,7 @@ button:focus-visible {
 
 .prose blockquote {
   padding: 2px 0 2px 18px;
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--border);
   color: var(--muted);
 }
 
@@ -679,43 +550,11 @@ pre {
   color: var(--hl-string);
 }
 
-/* ---------- Post nav ---------- */
-.post-nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+/* ---------- Comments ---------- */
+.comments {
   margin-top: 64px;
   padding-top: 32px;
   border-top: 1px solid var(--border);
-}
-
-.post-nav a {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-}
-
-.post-nav a:hover {
-  border-color: var(--accent);
-  text-decoration: none;
-}
-
-.post-nav-next {
-  text-align: right;
-  grid-column: 2;
-}
-
-.post-nav-label {
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.post-nav-title {
-  color: var(--fg);
-  font-weight: 600;
 }
 
 /* ---------- 404 ---------- */
@@ -726,7 +565,7 @@ pre {
 
 .not-found-code {
   margin: 0;
-  color: var(--accent);
+  color: var(--muted);
   font-family: var(--font-mono);
   font-size: 15px;
   letter-spacing: 0.1em;
@@ -749,26 +588,16 @@ pre {
     padding: 0 16px;
   }
 
-  .site-nav a {
-    padding: 6px 8px;
-    font-size: 14px;
-  }
-
-  .intro {
-    padding: 48px 0 24px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-  }
-
-  .intro p {
-    font-size: 16px;
+  .post-list {
+    margin-top: 32px;
   }
 
   .post-item {
-    grid-template-columns: 1fr;
-    gap: 4px;
+    gap: 16px;
+  }
+
+  .post-item a {
+    font-size: 16px;
   }
 
   .page-header,
@@ -778,7 +607,7 @@ pre {
 
   .page-header h1,
   .post-header h1 {
-    font-size: 27px;
+    font-size: 26px;
   }
 
   .prose {
@@ -787,13 +616,5 @@ pre {
 
   .prose h2 {
     font-size: 22px;
-  }
-
-  .post-nav {
-    grid-template-columns: 1fr;
-  }
-
-  .post-nav-next {
-    grid-column: 1;
   }
 }

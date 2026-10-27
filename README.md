@@ -1,6 +1,6 @@
 # onsidequest.github.io
 
-GitHub Pages + Jekyll 기술 블로그. https://onsidequest.github.io
+GitHub Pages + Jekyll 블로그. https://onsidequest.github.io
 
 ## 글 쓰기
 
@@ -9,10 +9,14 @@ GitHub Pages + Jekyll 기술 블로그. https://onsidequest.github.io
 ```yaml
 ---
 title: "글 제목"
-description: "목록에 보일 한 줄 요약"
-tags: [tag1, tag2]
 ---
+
+본문
 ```
+
+## 댓글
+
+[giscus](https://giscus.app)로 글마다 댓글이 붙는다. 댓글은 이 repo의 Discussions(Announcements 카테고리)에 저장된다. 설정은 `_config.yml`의 `giscus`.
 
 ## 로컬 미리보기
 
@@ -21,13 +25,3 @@ bundle install
 bundle exec jekyll serve --livereload
 # http://localhost:4000
 ```
-
-## 구조
-
-| 경로 | 내용 |
-|---|---|
-| `_config.yml` | 사이트 제목, 설명, URL, plugin |
-| `_layouts/` | `default`, `home`, `post`, `page` layout |
-| `_includes/` | head, header, footer, 글 목록 항목 |
-| `assets/css/main.css` | 스타일 (라이트/다크 모드 포함) |
-| `about.md`, `tags.html` | About, 태그 페이지 |

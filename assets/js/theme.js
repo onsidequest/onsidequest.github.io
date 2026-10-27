@@ -15,5 +15,10 @@
     try {
       localStorage.setItem('theme', next);
     } catch (e) {}
+
+    var giscus = document.querySelector('iframe.giscus-frame');
+    if (giscus) {
+      giscus.contentWindow.postMessage({ giscus: { setConfig: { theme: next } } }, 'https://giscus.app');
+    }
   });
 })();

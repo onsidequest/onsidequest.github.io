@@ -1,5 +1,4 @@
 title: onsidequest
-description: 직접 만들어 보며 배운 것들을 기록합니다.
 url: "https://onsidequest.github.io"
 baseurl: ""
 lang: ko
@@ -10,6 +9,12 @@ author:
   github: onsidequest
 
 permalink: /posts/:title/
+
+giscus:
+  repo: onsidequest/onsidequest.github.io
+  repo_id: R_kgDOVZHPRA
+  category: Announcements
+  category_id: DIC_kwDOVZHPRM4DJvGi
 
 markdown: kramdown
 highlighter: rouge

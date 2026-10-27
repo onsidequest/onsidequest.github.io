@@ -1,12 +1,4 @@
 <li class="post-item">
-  <time class="post-item-date" datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: '%m.%d' }}</time>
-  <div class="post-item-body">
-    <a class="post-item-title" href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a>
-    {% if include.post.description %}<p class="post-item-desc">{{ include.post.description }}</p>{% endif %}
-    {% if include.post.tags.size > 0 %}
-    <ul class="tag-list">
-      {% for tag in include.post.tags %}<li><a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">#{{ tag }}</a></li>{% endfor %}
-    </ul>
-    {% endif %}
-  </div>
+  <a href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a>
+  <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: '%Y.%m.%d' }}</time>
 </li>
