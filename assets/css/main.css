@@ -471,32 +471,49 @@ button:focus-visible {
     line-height: 1.5;
   }
 
-  .toc-title {
+  .toc-post {
+    margin: 0 0 22px;
+    color: var(--fg);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+  }
+
+  .toc-label {
     margin: 0 0 10px;
     color: var(--muted);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
   }
 
   .toc ol {
     margin: 0;
     padding: 0;
     list-style: none;
-    border-left: 1px solid var(--border);
   }
 
+  /* 트리 모양: 항목 앞에 └ */
   .toc li a {
-    display: block;
-    margin-left: -1px;
-    padding: 4px 0 4px 14px;
-    border-left: 2px solid transparent;
-    color: var(--muted);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 3px 0;
+    color: color-mix(in srgb, var(--muted) 75%, var(--bg));
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .toc li a::before {
+    content: "└";
+    flex: none;
+    color: var(--border);
   }
 
   .toc li.toc-sub a {
-    padding-left: 26px;
-    font-size: 13px;
+    padding-left: 16px;
   }
 
   .toc li a:hover {
@@ -505,9 +522,38 @@ button:focus-visible {
   }
 
   .toc li a[aria-current] {
-    border-left-color: var(--accent);
     color: var(--fg);
     font-weight: 600;
+  }
+
+  .toc li a[aria-current]::before {
+    color: var(--accent);
+  }
+
+  .toc-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+  }
+
+  .toc-progress-bar {
+    flex: 1;
+    max-width: 160px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border);
+    overflow: hidden;
+  }
+
+  .toc-progress-bar > span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: var(--accent);
   }
 
   /* AI가 쓴 챕터는 목차에도 점으로 표시 */

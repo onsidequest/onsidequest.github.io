@@ -33,17 +33,39 @@
     list.appendChild(li);
     return a;
   });
-  var title = document.createElement('p');
-  title.className = 'toc-title';
-  title.textContent = '목차';
-  toc.appendChild(title);
+  var postTitle = document.querySelector('.post-header h1');
+  if (postTitle) {
+    var name = document.createElement('p');
+    name.className = 'toc-post';
+    name.textContent = postTitle.textContent;
+    toc.appendChild(name);
+  }
+  var label = document.createElement('p');
+  label.className = 'toc-label';
+  label.textContent = '목차';
+  toc.appendChild(label);
   toc.appendChild(list);
+
+  // 본문을 얼마나 읽었는지
+  var progress = document.createElement('div');
+  progress.className = 'toc-progress';
+  progress.innerHTML = '<span class="toc-progress-bar"><span></span></span><span class="toc-progress-num">0%</span>';
+  toc.appendChild(progress);
+  var bar = progress.querySelector('.toc-progress-bar > span');
+  var num = progress.querySelector('.toc-progress-num');
   toc.hidden = false;
 
   // 화면 위쪽 기준선을 지난 마지막 제목을 지금 읽는 챕터로 본다
   var current = -1;
   function update() {
-    var line = window.innerHeight * 0.25;
+    var box = prose.getBoundingClientRect();
+    var span = box.height - window.innerHeight;
+    var ratio = span > 0 ? Math.min(Math.max(-box.top / span, 0), 1) : 1;
+    var percent = Math.round(ratio * 100) + '%';
+    bar.style.width = percent;
+    num.textContent = percent;
+
+    var line = window.innerHeight * 0.3;
     var index = -1;
     for (var i = 0; i < headings.length; i++) {
       if (headings[i].getBoundingClientRect().top <= line) index = i;
