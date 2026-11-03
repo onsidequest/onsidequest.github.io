@@ -424,6 +424,141 @@ button:focus-visible {
   margin-top: 0;
 }
 
+/* post.js가 넣는 오른쪽 여백 표시. 넓은 화면에서만 보인다 */
+.ai-rail {
+  display: none;
+}
+
+/* ---------- Post side columns ---------- */
+.toc {
+  display: none;
+}
+
+@media (min-width: 1240px) {
+  .container-post {
+    max-width: calc(var(--content-width) + 2 * 260px);
+  }
+
+  .container-post .post-header,
+  .container-post .comments {
+    max-width: var(--content-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .post-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, var(--content-width)) minmax(0, 1fr);
+    column-gap: 40px;
+  }
+
+  .post-body > .prose {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* 왼쪽 목차 */
+  .toc:not([hidden]) {
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    position: sticky;
+    top: 32px;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .toc-title {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .toc ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-left: 1px solid var(--border);
+  }
+
+  .toc li a {
+    display: block;
+    margin-left: -1px;
+    padding: 4px 0 4px 14px;
+    border-left: 2px solid transparent;
+    color: var(--muted);
+  }
+
+  .toc li.toc-sub a {
+    padding-left: 26px;
+    font-size: 13px;
+  }
+
+  .toc li a:hover {
+    color: var(--fg);
+    text-decoration: none;
+  }
+
+  .toc li a[aria-current] {
+    border-left-color: var(--accent);
+    color: var(--fg);
+    font-weight: 600;
+  }
+
+  /* AI가 쓴 챕터는 목차에도 점으로 표시 */
+  .toc li.toc-ai a::after {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-left: 6px;
+    border-radius: 50%;
+    background: var(--hl-builtin);
+    vertical-align: 2px;
+  }
+
+  /* 오른쪽 여백에 AI 작성 구간을 막대로 표시하고, 박스는 걷어낸다 */
+  .has-ai-rail .prose .ai-written {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .has-ai-rail .prose .ai-written::before {
+    content: none;
+  }
+
+  .has-ai-rail .ai-rail {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(100% + 40px);
+    width: 120px;
+    border-left: 3px solid var(--hl-builtin);
+  }
+
+  .ai-rail-label {
+    position: sticky;
+    top: 32px;
+    display: inline-block;
+    margin-left: 12px;
+    padding: 1px 10px;
+    border-radius: 999px;
+    background: var(--hl-builtin);
+    color: var(--bg);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+}
+
 .prose hr {
   margin: 3em 0;
   border: none;
