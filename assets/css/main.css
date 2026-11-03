@@ -395,6 +395,35 @@ button:focus-visible {
   margin-bottom: 0;
 }
 
+/* AI가 작성한 부분. 글에서 div class="ai-written" markdown="1"로 감싼다 */
+.prose .ai-written {
+  position: relative;
+  margin: 2.4em 0 1.4em;
+  padding: 28px 20px 4px;
+  border: 1px dashed color-mix(in srgb, var(--hl-builtin) 45%, var(--border));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--hl-builtin) 5%, var(--bg));
+}
+
+.prose .ai-written::before {
+  content: "AI 작성";
+  position: absolute;
+  top: -11px;
+  left: 16px;
+  padding: 1px 10px;
+  border: 1px solid color-mix(in srgb, var(--hl-builtin) 45%, var(--border));
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--hl-builtin);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.prose .ai-written > :first-child {
+  margin-top: 0;
+}
+
 .prose hr {
   margin: 3em 0;
   border: none;
