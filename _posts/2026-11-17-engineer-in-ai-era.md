@@ -4,13 +4,13 @@ title: "Software Engineer In AI Era"
 
 # Software Engineer In AI Era
 
-![울분이란]({{ '/assets/img/sw-engineer-in-ai-era/Indignation.jpeg' | relative_url }})
-
 {% linkpreview "https://www.yna.co.kr/view/AKR20261117042600004" %}
 
 세무사 시험에서 수석을 한 '세무냥이'라는 닉네임의 한모씨가 17일 경찰에 출두해 조사를 받았다.
 
 '세무냥이'는 한모씨가 온라인에서 쓰던 닉네임이다. 한모씨는 평균 점수가 30점대인 시험에서 100점을 받아 AI 커닝 의혹을 샀다. 국회와 한국세무사회까지 문제를 제기하자 압박감을 못 이겨 자수한 것으로 보인다.
+
+![울분이란]({{ '/assets/img/sw-engineer-in-ai-era/Indignation.jpeg' | relative_url }}){: width="420"}
 
 위 사진은 유영근 판사의 책 『우리는 왜 억울한가』 개정판 머리말을 촬영한 것이다. 지금 사태를 보며 수험생들이 느끼는 감정을 '울분'이라고 설명할 수 있을 것 같아 글에 넣었다.
 
