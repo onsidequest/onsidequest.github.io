@@ -1,0 +1,22 @@
+{%- comment -%}
+  링크 미리보기 카드. jekyll-linkpreview가 Open Graph 태그가 있는 페이지에 쓴다.
+  사용: 글에서 linkpreview 태그에 URL을 따옴표로 감싸 넘긴다.
+  플러그인이 이 파일만 따로 렌더링하므로 site, page와 Jekyll 전용 필터는 쓸 수 없다.
+  kramdown이 HTML 블록을 끊지 않도록 출력에 빈 줄을 남기지 않는다.
+{%- endcomment -%}
+{%- comment -%} 제목 끝에 붙은 " | 사이트 이름"은 아래 줄과 겹치므로 뗀다 {%- endcomment -%}
+{%- assign site_suffix = " | " | append: site_name -%}
+<div class="link-card">
+<a href="{{ url | escape }}" target="_blank" rel="noopener noreferrer">
+{%- if image %}
+<span class="link-card-thumb"><img src="{{ image | escape }}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></span>
+{%- endif %}
+<span class="link-card-body">
+<span class="link-card-title">{{ title | remove: site_suffix | escape }}</span>
+{%- if description %}
+<span class="link-card-desc">{{ description | escape }}</span>
+{%- endif %}
+<span class="link-card-domain">{{ site_name | default: domain | escape }}</span>
+</span>
+</a>
+</div>

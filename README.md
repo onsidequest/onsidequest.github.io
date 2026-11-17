@@ -4,7 +4,7 @@ GitHub Pages + Jekyll 블로그. https://onsidequest.github.io
 
 ## 글 쓰기
 
-`_posts/YYYY-MM-DD-slug.md` 파일을 만들고 `main`에 push하면 GitHub Pages가 자동으로 빌드·배포한다.
+`_posts/YYYY-MM-DD-slug.md` 파일을 만들고 `main`에 push하면 GitHub Actions(`.github/workflows/pages.yml`)가 자동으로 빌드·배포한다.
 
 ```yaml
 ---
@@ -13,6 +13,18 @@ title: "글 제목"
 
 본문
 ```
+
+아직 다 쓰지 않은 글은 `published: false`를 함께 적으면 배포에서 빠진다. 다 쓰면 그 줄을 지운다.
+
+## 링크 미리보기
+
+글 본문에 아래 한 줄을 넣으면 [jekyll-linkpreview](https://github.com/ysk24ok/jekyll-linkpreview)가 그 페이지의 제목·설명·썸네일을 가져와 카드로 그린다. 카드 모양은 `_includes/linkpreview.html`(썸네일이 없는 페이지는 `linkpreview_nog.html`)에서 바꾼다.
+
+```liquid
+{% linkpreview "https://example.com/article" %}
+```
+
+가져온 내용은 `_cache/`에 저장되고, 저장된 링크는 다시 가져오지 않는다. 새 링크를 넣었으면 로컬에서 한 번 빌드해 생긴 `_cache/*.json`을 함께 commit한다. 그러지 않으면 GitHub Actions가 빌드할 때 직접 가져오는데, 그 사이트가 요청을 막으면 빌드가 실패한다.
 
 ## 연대기 그림
 
@@ -52,3 +64,5 @@ bundle install
 bundle exec jekyll serve --livereload
 # http://localhost:4000
 ```
+
+`published: false`인 글까지 보려면 `--unpublished`를 붙인다.
